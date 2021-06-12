@@ -7,7 +7,7 @@
 struct nlist{
     struct nlist *next;
     int key;
-    int val;
+    long long val;
 };
 
 int hash(int x){
@@ -28,8 +28,8 @@ void score(struct nlist **dict, int key){
     (*p) -> val += key;
 }
 
-int getMaxVal(struct nlist **dict){
-    int max = 0;
+long long getMaxVal(struct nlist **dict){
+    long long max = 0;
     for(int i = 0; i < HASHSIZE; i++){
         struct nlist *p = dict[i];
         while(p){
@@ -61,7 +61,7 @@ int yahtzee_upper(int roll[], int l){
         if(((i+1)%l)) printf(", ");
         score(dict, roll[i]);
     }
-    printf("]) => %d\n", getMaxVal(dict));
+    printf("]) => %lld\n", getMaxVal(dict));
     destroy(dict);
 }
 
@@ -74,7 +74,7 @@ int main(int argc, char **argv){
             score(dict, a);
         }
 
-        printf("%d\n", getMaxVal(dict));
+        printf("%lld\n", getMaxVal(dict));
     } else {
         int test1[5] = {2, 3, 5, 5, 6};
         yahtzee_upper(test1, 5);
